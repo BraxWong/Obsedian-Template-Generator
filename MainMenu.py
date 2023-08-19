@@ -1,11 +1,11 @@
 import customtkinter
+import generateTemplate as gt
 
 class Home(customtkinter.CTk):
 
     def initializeWidget(self):
         self.grid_columnconfigure(0, weight = 1)
         self.grid_rowconfigure((0,1), weight = 1)
-        #customtkinter.set_default_color_theme("../theme/DaynNight.json")
         self.geometry("500x200")
         self.title("Obsidian Template Generator")
         self.resizable(False,False)
@@ -27,7 +27,8 @@ class Home(customtkinter.CTk):
     
 
     def generateTemplate(self):
-        print("Coming Really Soon Tho.")
+        templateGenerator = gt.generator()
+        templateGenerator.mainloop()
 
 
     
