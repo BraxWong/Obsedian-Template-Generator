@@ -27,8 +27,10 @@ class Home(customtkinter.CTk):
     
 
     def generateTemplate(self):
+        self.destroy()
         templateGenerator = gt.generator()
         templateGenerator.mainloop()
+
 
 
     
