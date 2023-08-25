@@ -1,5 +1,6 @@
 import customtkinter
 from tkinter import messagebox
+import tkinter as tk
 
 class config(customtkinter.CTk):
 
@@ -9,39 +10,39 @@ class config(customtkinter.CTk):
         self.title("Template Configuration")
         self.resizable(False,False)
         title = customtkinter.CTkLabel(self, text = "Template Configuration", font = ("American Typewriter",25))
-        title.grid(row = 0, column = 0, sticky = "nsew")
-        submitButton = customtkinter.CTkButton(self, text = "Submit", command = self.submitTemplate)
+        title.grid(row = 0, column = 0, columnspan = 2, sticky = "nsew")
+        submitButton = customtkinter.CTkButton(self, text = "Submit", command = self.submitTemplate, height = 50)
+        submitButton.grid(row = 3, column = 0, columnspan = 2, sticky = "nsew")
         ticketNameLabel = customtkinter.CTkLabel(self, text = "Name of the ticket", font = ("American Typewriter",25))
-        ticketNameLabel.grid(row = 1, column = 0)
-        ticketName = customtkinter,CTkTextbox(master = self, height = 20, width = 20)
-        ticketName.grid(row = 1, column = 1)
+        ticketNameLabel.grid(row = 1, column = 0, pady = (0,0))
+        self.ticketName.grid(row = 1, column = 1, pady = (0,0))
         ticketNumberLabel = customtkinter.CTkLabel(self, text = "Number of the ticket", font = ("American Typewriter",25))
-        ticketNumberLabel.grid(row = 2, column = 1)
-        ticketNumber = customtkinter.CTkTextbox(master = self, height = 50, width = 450)
-        ticketNumber.grid(row = 2, column = 0)
-         
+        ticketNumberLabel.grid(row = 2, column = 0)
+        self.ticketNumber.grid(row = 2, column = 1)
+
     def __init__(self):
         super().__init__()
-        self.ticketNumber = ""
-        self.ticketName = ""
+        self.ticketNumber = customtkinter.CTkTextbox(master = self, height = 40, width = 450, border_width = 3, border_color = "black")
+        self.ticketName = customtkinter.CTkTextbox(master = self, height = 40, width = 450, border_width = 3, border_color = "black")
         self.initializeWidget()
 
     def submitTemplate(self):
-        if self.validateInput() == "TRUE":
+        if self.validateInput():
             print("YAS QUEEN")
         else:
-           messagebox.showerror(title = "Inputs not found", message = "Error: One or more inputs not found.")             
-           
+           messagebox.showerror(title = "Inputs not found", message = "Error: One or more inputs not found.")
 
     def validateInput(self):
-        return "TRUE"
+        if isdigit(self.ticketNumber.get("0.0","end"))  
+            if self.ticketName.get("0.0","end") not ""
+                return True
+        return False
 
     def grid_configurate(self):
-       self.grid_rowconfigure(0, weight = 1)
-       self.grid_rowconfigure(1, weight = 1)
-       self.grid_rowconfigure(2, weight = 1)
-       self.grid_columnconfigure(0, weight = 1)
-       self.grid_columnconfigure(1, weight = 1)
-       
+        self.grid_rowconfigure(0, weight = 1)
+        self.grid_rowconfigure(1, weight = 1)
+        self.grid_rowconfigure(2, weight = 1)
+        self.grid_columnconfigure(0, weight = 1)
+        self.grid_columnconfigure(1, weight = 1)
 
-        
+
