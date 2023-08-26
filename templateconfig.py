@@ -33,8 +33,9 @@ class config(customtkinter.CTk):
            messagebox.showerror(title = "Inputs not found", message = "Error: One or more inputs not found.")
 
     def validateInput(self):
-        if isdigit(self.ticketNumber.get("0.0","end"))  
-            if self.ticketName.get("0.0","end") not ""
+        ticketnum = int(self.ticketNumber.get("0.0","end"))  
+        if ticketnum != 0:
+            if self.ticketName.get("0.0","end").strip():
                 return True
         return False
 
