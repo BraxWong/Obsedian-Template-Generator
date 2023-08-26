@@ -1,6 +1,7 @@
 import customtkinter
 from tkinter import messagebox
 import tkinter as tk
+import os
 
 class config(customtkinter.CTk):
 
@@ -20,15 +21,21 @@ class config(customtkinter.CTk):
         ticketNumberLabel.grid(row = 2, column = 0)
         self.ticketNumber.grid(row = 2, column = 1)
 
-    def __init__(self):
+    def __init__(self, filePath):
         super().__init__()
+        self.filePath = filePath
         self.ticketNumber = customtkinter.CTkTextbox(master = self, height = 40, width = 450, border_width = 3, border_color = "black")
         self.ticketName = customtkinter.CTkTextbox(master = self, height = 40, width = 450, border_width = 3, border_color = "black")
         self.initializeWidget()
 
     def submitTemplate(self):
         if self.validateInput():
-            print("YAS QUEEN")
+            filePath = self.filePath + "/" + self.ticketName.get("1.0","end-1c")
+            filePath = filePath.strip()
+            if not self.directory_exists(filePath):
+                os.makedirs(filePath) 
+            else:
+                messagebox.showerror(title = "Directory already exists", message = "Error: Directory already exists.")
         else:
            messagebox.showerror(title = "Inputs not found", message = "Error: One or more inputs not found.")
 
@@ -45,5 +52,8 @@ class config(customtkinter.CTk):
         self.grid_rowconfigure(2, weight = 1)
         self.grid_columnconfigure(0, weight = 1)
         self.grid_columnconfigure(1, weight = 1)
+    
+    def directory_exists(self, filePath):
+        return os.path.exists(filePath)
 
 

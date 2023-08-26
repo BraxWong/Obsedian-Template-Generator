@@ -44,7 +44,7 @@ class generator(customtkinter.CTk):
             messagebox.showerror(title = "Directory not found", message = "Error: Directory is either not found or no longer exists.")
         else:
            self.destroy()
-           templateConfig = tc.config()
+           templateConfig = tc.config(self.path)
            templateConfig.mainloop()
 
 

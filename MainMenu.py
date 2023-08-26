@@ -1,5 +1,5 @@
 import customtkinter
-import generateTemplate as gt
+import pathSelector as gt
 
 class Home(customtkinter.CTk):
 
