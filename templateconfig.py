@@ -2,6 +2,7 @@ import customtkinter
 from tkinter import messagebox
 import tkinter as tk
 import os
+import template_generator as tg
 
 class config(customtkinter.CTk):
 
@@ -34,6 +35,7 @@ class config(customtkinter.CTk):
             filePath = filePath.strip()
             if not self.directory_exists(filePath):
                 os.makedirs(filePath) 
+                templateGen = tg.templateGenerator(filePath, self.ticketNumber.get("1.0","end-1c"), self.ticketName.get("1.0","end-1c"))
             else:
                 messagebox.showerror(title = "Directory already exists", message = "Error: Directory already exists.")
         else:
