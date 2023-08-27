@@ -1,5 +1,6 @@
 import os
 from tkinter import messagebox
+import files as f
 
 class templateGenerator():
 
@@ -8,13 +9,6 @@ class templateGenerator():
         self.ticketName = ticketName
         self.ticketNumber = ticketNumber
         self.createTemplate()
-
-
-    def createFile(self, fileType, fileName):
-        if os.path.exists(self.filePath + "/" + fileName + "." + fileType): 
-           messagebox.showerror(title = "File exists", message = "Error: This file already exists.") 
-        else:
-            f = open(self.filePath + "/" + fileName + "." + fileType, "x")
 
     def createTemplate(self):
         self.createFile("md","Flow")
