@@ -8,13 +8,13 @@ class template_creator(customtkinter.CTk):
         self.title("Obsidian Template Creator")
         self.resizable(False,False)
         titleLabel = customtkinter.CTkLabel(self,text= "Template Creator", font = ("American Typewriter",25))
-        titleLabel.grid(row = 0, column = 0, columnspan = 2, pady = 10, sticky = "nsew")
+        titleLabel.grid(row = 0, column = 0, columnspan = 2, pady = (10,0))
         startButton = customtkinter.CTkButton(self, text = "Generate Template", command = self.generateTemplate)
-        startButton.grid(row = 2, column = 0, padx = (90,5), pady = (20,0))
+        startButton.grid(row = 2, column = 0, padx = 10, pady = 10, sticky = "w")
         moreFiles = customtkinter.CTkButton(self, text = "More Files", command = self.generateTemplate)
-        moreFiles.grid(row = 2, column = 1, padx = (10,5), pady = (20,0), sticky = "ew")
-        self.optionmenu.grid(row = 1, column = 0, padx = (10,5), pady = (5,0), sticky = "ew")
-        self.quantitymenu.grid(row = 1, column = 1, padx = (5,20), pady = (4,0), sticky = "ew")
+        moreFiles.grid(row = 2, column = 1, padx = 10, pady = 10, sticky = "e")
+        self.optionmenu.grid(row = 1, column = 0, padx = 10, pady = 5, sticky = "w")
+        self.quantitymenu.grid(row = 1, column = 1, padx = 10, pady = 5, sticky = "e")
          
     def __init__(self):
         super().__init__()
@@ -28,9 +28,6 @@ class template_creator(customtkinter.CTk):
         self.grid_rowconfigure(2, weight = 1)
         self.grid_columnconfigure(0, weight = 1)
         self.grid_columnconfigure(1, weight = 1)
-        self.grid_columnconfigure(2, weight = 1)
-        self.grid_columnconfigure(3, weight = 1)
-        self.grid_columnconfigure(4, weight = 1)
         
         
     def generateTemplate(self):
