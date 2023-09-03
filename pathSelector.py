@@ -19,11 +19,10 @@ class generator(customtkinter.CTk):
         self.directoryTextBox.insert("0.0","directory: ")
         self.directoryTextBox.grid(row = 1, column = 1, padx = (5,10))
 
-    def __init__(self, scene):
+    def __init__(self):
         super().__init__()
         self.directoryTextBox = customtkinter.CTkTextbox(self, width = 450, height = 50, border_width = 3)
         self.path = "";
-        self.scene = scene
         self.initializeWidget()
 
        
@@ -45,9 +44,8 @@ class generator(customtkinter.CTk):
             messagebox.showerror(title = "Directory not found", message = "Error: Directory is either not found or no longer exists.")
         else:
             self.destroy()
-            if self.scene != "temp":
-                templateConfig = tc.config(self.path)
-                templateConfig.mainloop()
+            templateConfig = tc.config(self.path)
+            templateConfig.mainloop()
 
 
 

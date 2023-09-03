@@ -21,12 +21,14 @@ class template_creator(customtkinter.CTk):
         self.optionmenu.grid(row = 1, column = 0, padx = 20, pady = 5, sticky = "w")
         self.quantitymenu.grid(row = 1, column = 1, padx = 20, pady = 5, sticky = "e")
          
-    def __init__(self):
+    def __init__(self, template_name):
         super().__init__()
         self.optionmenu = customtkinter.CTkOptionMenu(self, values=["Select Option","Flow","Roadblocks","Reminder","Resources","Requirements","Visualization","Others"])
         self.quantitymenu = customtkinter.CTkOptionMenu(self, values=["Select Quantity","1","2","3","4","5","Other"])
         self.list_of_files = []
         self.counter = '0'
+        self.template_name = template_name
+        print(self.template_name)
         self.initializeWidget()
 
     def grid_configurate(self):
@@ -38,18 +40,18 @@ class template_creator(customtkinter.CTk):
         
         
     def ConvertJson(self):
-        ps = pathSelector.generator("temp")
-        filePath = ps.path
-        print(filePath)
-        json = JsonConverter.json_converter(self.list_of_files, filePath) 
+        json = JsonConverter.json_converter(self.list_of_files, "template", self.template_name) 
         json.write_to_file()
 
     def AddFiles(self):
-        self.list_of_files.append(FileNQuantity.FileTypeNQuantity(self.optionmenu.get(),self.quantitymenu.get())) 
-        self.optionmenu.set("Select Option")
-        self.quantitymenu.set("Select Quantity")
-        if self.counter == '0':
-            self.counter = '1'
-            messagebox.showinfo(title = "Item added", message = "Item added. Please press Generate Template if you do not require more files in your template.")
+        if self.optionmenu.get() == "Select Option" or self.quantitymenu.get() == "Select Option":
+            messagebox.showerror(title = "Input Error", message = "Error: Please select the file type and the quantity") 
+        else:
+            self.list_of_files.append(FileNQuantity.FileTypeNQuantity(self.optionmenu.get(),self.quantitymenu.get())) 
+            self.optionmenu.set("Select Option")
+            self.quantitymenu.set("Select Quantity")
+            if self.counter == '0':
+                self.counter = '1'
+                messagebox.showinfo(title = "Item added", message = "Item added. Please press Generate Template if you do not require more files in your template.")
         
 
