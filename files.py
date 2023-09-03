@@ -1,4 +1,6 @@
 import random_seed_generator
+import os
+from tkinter import messagebox
 
 class markdown():
 
@@ -11,7 +13,7 @@ class markdown():
 
     def createFile(self):
         if os.path.exists(self.filePath + "/" + self.fileName + "." + self.fileType): 
-           messagebox.showerror(title = "File exists", message = "Error: This file already exists.") 
+           messagebox.showerror(title = "File exists", message = "Error: " + self.fileName + "." + self.fileType + " already exists." ) 
         else:
             f = open(self.filePath + "/" + self.fileName + "." + self.fileType, "x")
 
@@ -66,13 +68,19 @@ class requirements(markdown):
     def __init__(self, ticketNumber, ticketName, filePath):
         super().__init__(filePath)
         self.fileType = "md"
-        self.ticketNumber = ticketNumber
-        self.tickerName = ticketName
-        self.fileName = self.ticketNumber + " - " + self.ticketName + " Requirements" 
+        self.fileName = ticketNumber + " - " + ticketName + " Requirements" 
 
     def printSeed(self):
         print(self.seed)
 
+class visualization(markdown):
 
+    def __init__(self, filePath):
+        super().__init__(filePath)
+        self.fileType = "canva"
+        self.fileName = "Ticket Visualization"
+
+    def printSeed(Self):
+        print(self.seed)
 
 

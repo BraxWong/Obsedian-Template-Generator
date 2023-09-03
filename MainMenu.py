@@ -1,5 +1,6 @@
 import customtkinter
 import pathSelector as gt
+import ConfigName
 
 class Home(customtkinter.CTk):
 
@@ -23,8 +24,9 @@ class Home(customtkinter.CTk):
 
 
     def createTemplate(self):
-        print("Coming Soon.")
-    
+        self.destroy()
+        config_name = ConfigName.template_name()
+        config_name.mainloop()
 
     def generateTemplate(self):
         self.destroy()
