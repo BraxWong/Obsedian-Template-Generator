@@ -3,6 +3,7 @@ from tkinter import messagebox
 import tkinter as tk
 import os
 import template_generator as tg
+from pathvalidate import is_valid_filename, sanitize_filename
 
 class config(customtkinter.CTk):
 
@@ -30,12 +31,16 @@ class config(customtkinter.CTk):
         self.initializeWidget()
 
     def submitTemplate(self):
+        ticketName = self.ticketName.get("1.0","end-1c")
         if self.validateInput():
-            filePath = self.filePath + "/" + self.ticketName.get("1.0","end-1c")
+            if not is_valid_filename(ticketName):
+                ticketName = sanitize_filename(ticketName)
+                messagebox.showinfo(title = "Illegal ticket name", message = "Notice: The ticket name you provided is not a legal file name. Your ticket name has been changed to: " + ticketName)
+            filePath = self.filePath + "/" + ticketName
             filePath = filePath.strip()
             if not self.directory_exists(filePath):
                 os.makedirs(filePath) 
-                templateGen = tg.templateGenerator(filePath, self.ticketNumber.get("1.0","end-1c"), self.ticketName.get("1.0","end-1c"))
+                templateGen = tg.templateGenerator(filePath, self.ticketNumber.get("1.0","end-1c"), ticketName)
             else:
                 messagebox.showerror(title = "Directory already exists", message = "Error: Directory already exists.")
         else:

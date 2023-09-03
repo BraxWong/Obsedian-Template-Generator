@@ -2,6 +2,7 @@ import customtkinter
 import tkinter as tk
 from tkinter import messagebox
 import create_template
+from pathvalidate import is_valid_filename, sanitize_filename
 
 class template_name(customtkinter.CTk):
 
@@ -29,6 +30,9 @@ class template_name(customtkinter.CTk):
 
     def create_template(self):
         templatename = self.TemplateName.get("1.0","end-1c")
+        if not is_valid_filename(templatename):
+            templatename = sanitize_filename(templatename)
+            messagebox.showinfo(title = "Illegal template name", message = "Notice: The template name you provided is not a legal file name. Your template name has been changed to: " + templatename)
         templatename = templatename.strip()
         if self.TemplateName != 0:
             self.destroy()
