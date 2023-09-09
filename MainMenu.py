@@ -1,6 +1,6 @@
 import customtkinter
-import pathSelector as gt
 import ConfigName
+import DefaultorCustomTemplate
 
 class Home(customtkinter.CTk):
 
@@ -30,8 +30,8 @@ class Home(customtkinter.CTk):
 
     def generateTemplate(self):
         self.destroy()
-        templateGenerator = gt.generator()
-        templateGenerator.mainloop()
+        TemplateGenerate = DefaultorCustomTemplate.ChooseTemplate()
+        TemplateGenerate.mainloop()
 
 
 
