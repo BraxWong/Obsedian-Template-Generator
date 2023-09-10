@@ -23,9 +23,10 @@ class config(customtkinter.CTk):
         ticketNumberLabel.grid(row = 2, column = 0)
         self.ticketNumber.grid(row = 2, column = 1)
 
-    def __init__(self, filePath):
+    def __init__(self, filePath, config):
         super().__init__()
         self.filePath = filePath
+        self.config = config
         self.ticketNumber = customtkinter.CTkTextbox(master = self, height = 40, width = 450, border_width = 3, border_color = "black")
         self.ticketName = customtkinter.CTkTextbox(master = self, height = 40, width = 450, border_width = 3, border_color = "black")
         self.initializeWidget()
@@ -40,7 +41,9 @@ class config(customtkinter.CTk):
             filePath = filePath.strip()
             if not self.directory_exists(filePath):
                 os.makedirs(filePath) 
-                templateGen = tg.templateGenerator(filePath, self.ticketNumber.get("1.0","end-1c"), ticketName)
+                templateGen = tg.templateGenerator(filePath, self.ticketNumber.get("1.0","end-1c"), ticketName, self.config)
+                messagebox.showinfo(title = "Vault Generated", message = "Success: The Obsidian Vault has been generated.")
+                self.destroy()
             else:
                 messagebox.showerror(title = "Directory already exists", message = "Error: Directory already exists.")
         else:

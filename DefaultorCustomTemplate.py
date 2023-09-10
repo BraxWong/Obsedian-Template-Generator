@@ -31,5 +31,9 @@ class ChooseTemplate(customtkinter.CTk):
         self.grid_columnconfigure(1, weight = 1)
 
     def checkTemplateOption(self):
-        templateGenerator = pathSelector.generator()
+        self.destroy()
+        if self.radio_var.get() == 1:
+            templateGenerator = pathSelector.generator("Default")
+        else:
+            templateGenerator = pathSelector.generator("Custom")
         templateGenerator.mainloop()

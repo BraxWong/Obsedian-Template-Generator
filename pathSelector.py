@@ -10,7 +10,10 @@ class generator(customtkinter.CTk):
         self.geometry("600x300")
         self.title("Template Generator")
         self.resizable(False,False)
-        titleLabel = customtkinter.CTkLabel(self,text="Choose the target location", font = ("American Typewriter",25))
+        if(config == "Default"):
+            titleLabel = customtkinter.CTkLabel(self,text="Choose the target location", font = ("American Typewriter",25))
+        else:
+            titleLabel = customtkinter.CTkLabel(self,text="Select your template", font = ("American Typewriter",25))
         titleLabel.grid(row = 0, column = 0, columnspan = 2, sticky = "nsew")
         directoryButton = customtkinter.CTkButton(self, text = "Choose Location", command = self.chooseLocation)
         directoryButton.grid(row = 1, column = 0, padx = (10,5))
@@ -19,8 +22,9 @@ class generator(customtkinter.CTk):
         self.directoryTextBox.insert("0.0","directory: ")
         self.directoryTextBox.grid(row = 1, column = 1, padx = (5,10))
 
-    def __init__(self):
+    def __init__(self, config):
         super().__init__()
+        self.config = config 
         self.directoryTextBox = customtkinter.CTkTextbox(self, width = 450, height = 50, border_width = 3)
         self.path = "";
         self.initializeWidget()
@@ -44,7 +48,7 @@ class generator(customtkinter.CTk):
             messagebox.showerror(title = "Directory not found", message = "Error: Directory is either not found or no longer exists.")
         else:
             self.destroy()
-            templateConfig = tc.config(self.path)
+            templateConfig = tc.config(self.path, self.config)
             templateConfig.mainloop()
 
 

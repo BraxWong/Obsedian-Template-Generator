@@ -1,16 +1,22 @@
 import os
 from tkinter import messagebox
 import files as f
+import json
 
 class templateGenerator():
 
-    def __init__(self, filePath, ticketNumber, ticketName):
+    def __init__(self, configFile, filePath, ticketNumber, ticketName, config):
         self.filePath = filePath
         self.ticketName = ticketName
         self.ticketNumber = ticketNumber
-        self.createTemplate()
+        self.config = config
+        self.configFile = configFile
+        if self.config == "Default":
+            self.createDefaultTemplate()
+        else:
+            self.createCustomTemplate()
 
-    def createTemplate(self):
+    def createDefaultTemplate(self):
         flow = f.flow(self.filePath)
         flow.createFile()
         roadblocks = f.roadblocks(self.filePath)
@@ -23,3 +29,8 @@ class templateGenerator():
         requirements.createFile()
         visualization = f.visualization(self.filePath)
         visualization.createFile()
+
+    def createCustomTemplate(self):
+        with open(self.configFile,'r') as f:
+            data = json.load(f)
+        print(data)
