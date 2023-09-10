@@ -33,4 +33,10 @@ class templateGenerator():
     def createCustomTemplate(self):
         with open(self.configFile,'r') as f:
             data = json.load(f)
-        print(data)
+        FlowQuantity = data['Flow']
+        RoadblocksQuantity = data['Roadblocks']
+        ReminderQuantity = data['Reminder']
+        RequirementQuantity = data['Requirements']
+        ResourcesQuantity = data['Resources']
+        VisualizationQuantity = data['Visualization']
+
