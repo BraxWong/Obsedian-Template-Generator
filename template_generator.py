@@ -34,9 +34,22 @@ class templateGenerator():
         with open(self.configFile,'r') as f:
             data = json.load(f)
         FlowQuantity = data['Flow']
+        flow = f.flow(self.filePath)
+        flow.createFile(FlowQuantity)
         RoadblocksQuantity = data['Roadblocks']
+        roadblocks = f.roadblocks(self.filePath)
+        roadblocks.createFile(RoadblocksQuantity)
         ReminderQuantity = data['Reminder']
+        reminder = f.reminder(self.filePath)
+        reminder.createFile(ReminderQuantity)
         RequirementQuantity = data['Requirements']
+        requirements = f.requirements(self.ticketNumber, self.ticketName, self.filePath)
+        requirements.createFile(RequirementQuantity)
         ResourcesQuantity = data['Resources']
+        resources = f.resources(self.filePath)
+        resources.createFile(ResourcesQuantity)
         VisualizationQuantity = data['Visualization']
+        visualization = f.visualization(self.filePath)
+        visualization.createFile(VisualizationQuantity)
+
 
