@@ -13,22 +13,19 @@ class markdown():
 
     def createFile(self):
         if os.path.exists(self.filePath + "/" + self.fileName + "." + self.fileType): 
-           messagebox.showerror(title = "File exists", message = "Error: " + self.fileName + "." + self.fileType + " already exists." ) 
+            messagebox.showerror(title = "File exists", message = "Error: " + self.fileName + "." + self.fileType + " already exists." ) 
         else:
-            f = open(self.filePath + "/" + self.fileName + "." + self.fileType, "x")
+            open(self.filePath + "/" + self.fileName + "." + self.fileType, "x")
 
     def createMultipleFiles(self, quantity):
         index = 0
-        while index != quantity - 1
-            if os.path.exists(self.filePath + "/" + self.fileName + (index + 1).toString() + "." + self.fileType): 
+        while index != quantity - 1:
+            if os.path.exists(self.filePath + "/" + self.fileName + (index + 1) + "." + self.fileType): 
                 messagebox.showerror(title = "File exists", message = "Error: " + self.fileName + "." + self.fileType + " already exists." ) 
             else:
-                f = open(self.filePath + "/" + self.fileName + "." + self.fileType, "x")
+                open(self.filePath + "/" + self.fileName + "." + self.fileType, "x")
             index += 1
-
-
-            
-
+            f = open(self.filePath + "/" + self.fileName + "." + self.fileType, "x")
 
 class flow(markdown):
 
@@ -91,7 +88,7 @@ class visualization(markdown):
         self.fileType = "canva"
         self.fileName = "Ticket Visualization"
 
-    def printSeed(Self):
+    def printSeed(self):
         print(self.seed)
 
 

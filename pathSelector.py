@@ -10,7 +10,7 @@ class generator(customtkinter.CTk):
         self.geometry("600x300")
         self.title("Template Generator")
         self.resizable(False,False)
-        if(config == "Default"):
+        if(self.config == "Default"):
             titleLabel = customtkinter.CTkLabel(self,text="Choose the target location", font = ("American Typewriter",25))
         else:
             titleLabel = customtkinter.CTkLabel(self,text="Select your template", font = ("American Typewriter",25))

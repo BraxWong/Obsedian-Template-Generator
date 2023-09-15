@@ -41,7 +41,7 @@ class config(customtkinter.CTk):
             filePath = filePath.strip()
             if not self.directory_exists(filePath):
                 os.makedirs(filePath) 
-                templateGen = tg.templateGenerator(filePath, self.ticketNumber.get("1.0","end-1c"), ticketName, self.config)
+                templateGen = tg.templateGenerator(None,filePath, self.ticketNumber.get("1.0","end-1c"), ticketName, self.config)
                 messagebox.showinfo(title = "Vault Generated", message = "Success: The Obsidian Vault has been generated.")
                 self.destroy()
             else:

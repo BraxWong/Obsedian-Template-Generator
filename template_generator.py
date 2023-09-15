@@ -31,8 +31,8 @@ class templateGenerator():
         visualization.createFile()
 
     def createCustomTemplate(self):
-        with open(self.configFile,'r') as f:
-            data = json.load(f)
+        with open(self.configFile,'r') as k:
+            data = json.load(k)
         FlowQuantity = data['Flow']
         flow = f.flow(self.filePath)
         flow.createFile(FlowQuantity)
