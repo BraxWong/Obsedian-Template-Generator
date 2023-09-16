@@ -6,15 +6,24 @@ import json
 class templateGenerator():
 
     def __init__(self, configFile, filePath, ticketNumber, ticketName, config):
+        print(config)
         self.filePath = filePath
         self.ticketName = ticketName
         self.ticketNumber = ticketNumber
         self.config = config
         self.configFile = configFile
-        if self.config == "Default":
+        if configFile == None:
             self.createDefaultTemplate()
         else:
             self.createCustomTemplate()
+
+
+# ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+# ┃                                                                              ┃
+# ┃       #WARNING: These are blasphemy, both createDefaultTemplate() and        ┃
+# ┃createCustomTemplate() have to be refactored. And it all begins with files.py ┃
+# ┃                                                                              ┃
+# ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
 
     def createDefaultTemplate(self):
         flow = f.flow(self.filePath)
@@ -33,23 +42,29 @@ class templateGenerator():
     def createCustomTemplate(self):
         with open(self.configFile,'r') as k:
             data = json.load(k)
-        FlowQuantity = data['Flow']
-        flow = f.flow(self.filePath)
-        flow.createFile(FlowQuantity)
-        RoadblocksQuantity = data['Roadblocks']
-        roadblocks = f.roadblocks(self.filePath)
-        roadblocks.createFile(RoadblocksQuantity)
-        ReminderQuantity = data['Reminder']
-        reminder = f.reminder(self.filePath)
-        reminder.createFile(ReminderQuantity)
-        RequirementQuantity = data['Requirements']
-        requirements = f.requirements(self.ticketNumber, self.ticketName, self.filePath)
-        requirements.createFile(RequirementQuantity)
-        ResourcesQuantity = data['Resources']
-        resources = f.resources(self.filePath)
-        resources.createFile(ResourcesQuantity)
-        VisualizationQuantity = data['Visualization']
-        visualization = f.visualization(self.filePath)
-        visualization.createFile(VisualizationQuantity)
+        if 'Flow' in data:
+            FlowQuantity = data['Flow']
+            flow = f.flow(self.filePath)
+            flow.createMultipleFiles(FlowQuantity)
+        if 'Roadblocks' in data:
+            RoadblocksQuantity = data['Roadblocks']
+            roadblocks = f.roadblocks(self.filePath)
+            roadblocks.createMultipleFiles(RoadblocksQuantity)
+        if 'Reminder' in data:
+            ReminderQuantity = data['Reminder']
+            reminder = f.reminder(self.filePath)
+            reminder.createMultipleFiles(ReminderQuantity)
+        if 'Requirements' in data:
+            RequirementQuantity = data['Requirements']
+            requirements = f.requirements(self.ticketNumber, self.ticketName, self.filePath)
+            requirements.createMultipleFiles(RequirementQuantity)
+        if 'Resources' in data:
+            ResourcesQuantity = data['Resources']
+            resources = f.resources(self.filePath)
+            resources.createMultipleFiles(ResourcesQuantity)
+        if 'Visualization' in data:
+            VisualizationQuantity = data['Visualization']
+            visualization = f.visualization(self.filePath)
+            visualization.createMultipleFiles(VisualizationQuantity)
 
 

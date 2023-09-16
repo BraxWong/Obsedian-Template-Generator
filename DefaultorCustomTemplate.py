@@ -33,7 +33,7 @@ class ChooseTemplate(customtkinter.CTk):
     def checkTemplateOption(self):
         self.destroy()
         if self.radio_var.get() == 1:
-            templateGenerator = pathSelector.generator("Default")
+            templateGenerator = pathSelector.generator("Default",None)
         else:
-            templateGenerator = pathSelector.generator("Custom")
+            templateGenerator = pathSelector.generator("Custom",None)
         templateGenerator.mainloop()

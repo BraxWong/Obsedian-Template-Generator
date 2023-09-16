@@ -2,6 +2,20 @@ import random_seed_generator
 import os
 from tkinter import messagebox
 
+# ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+# ┃                                                                              ┃
+# ┃    #NOTE: markdown should be the only class here. The other classes will     ┃
+# ┃                        not be needed down the roadb.                         ┃
+# ┃                                                                              ┃
+# ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
+
+# ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+# ┃                                                                              ┃
+# ┃    #TODO: Refactor markdown to create any type of files except for canva     ┃
+# ┃                               and media types.                               ┃
+# ┃                                                                              ┃
+# ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
+
 class markdown():
 
     def __init__(self, filePath):
@@ -19,13 +33,21 @@ class markdown():
 
     def createMultipleFiles(self, quantity):
         index = 0
-        while index != quantity - 1:
-            if os.path.exists(self.filePath + "/" + self.fileName + (index + 1) + "." + self.fileType): 
+        quantity = int(quantity)
+        while index != quantity:
+            if os.path.exists(self.filePath + "/" + self.fileName + str(index + 1) + "." + self.fileType): 
                 messagebox.showerror(title = "File exists", message = "Error: " + self.fileName + "." + self.fileType + " already exists." ) 
             else:
-                open(self.filePath + "/" + self.fileName + "." + self.fileType, "x")
+                open(self.filePath + "/" + self.fileName + str(index+1) +  "." + self.fileType, "x")
             index += 1
-            f = open(self.filePath + "/" + self.fileName + "." + self.fileType, "x")
+
+
+# ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+# ┃                                                                              ┃
+# ┃    From this point on to potentially visualization, these will eventually    ┃
+# ┃                                not be needed.                                ┃
+# ┃                                                                              ┃
+# ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
 
 class flow(markdown):
 

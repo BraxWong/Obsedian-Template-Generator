@@ -38,7 +38,13 @@ class template_creator(customtkinter.CTk):
         self.grid_columnconfigure(0, weight = 1)
         self.grid_columnconfigure(1, weight = 1)
         
-        
+# ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+# ┃                                                                              ┃
+# ┃     #TODO: Use pathSelector to allow users to select target path for the     ┃
+# ┃                                  json file.                                  ┃
+# ┃                                                                              ┃
+# ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
+
     def ConvertJson(self):
         json = JsonConverter.json_converter(self.list_of_files, "template", self.template_name) 
         json.write_to_file()
