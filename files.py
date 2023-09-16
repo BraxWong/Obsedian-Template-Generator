@@ -2,6 +2,20 @@ import random_seed_generator
 import os
 from tkinter import messagebox
 
+# ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+# ┃                                                                              ┃
+# ┃    #NOTE: markdown should be the only class here. The other classes will     ┃
+# ┃                        not be needed down the roadb.                         ┃
+# ┃                                                                              ┃
+# ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
+
+# ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+# ┃                                                                              ┃
+# ┃    #TODO: Refactor markdown to create any type of files except for canva     ┃
+# ┃                               and media types.                               ┃
+# ┃                                                                              ┃
+# ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
+
 class markdown():
 
     def __init__(self, filePath):
@@ -13,11 +27,27 @@ class markdown():
 
     def createFile(self):
         if os.path.exists(self.filePath + "/" + self.fileName + "." + self.fileType): 
-           messagebox.showerror(title = "File exists", message = "Error: " + self.fileName + "." + self.fileType + " already exists." ) 
+            messagebox.showerror(title = "File exists", message = "Error: " + self.fileName + "." + self.fileType + " already exists." ) 
         else:
-            f = open(self.filePath + "/" + self.fileName + "." + self.fileType, "x")
+            open(self.filePath + "/" + self.fileName + "." + self.fileType, "x")
+
+    def createMultipleFiles(self, quantity):
+        index = 0
+        quantity = int(quantity)
+        while index != quantity:
+            if os.path.exists(self.filePath + "/" + self.fileName + str(index + 1) + "." + self.fileType): 
+                messagebox.showerror(title = "File exists", message = "Error: " + self.fileName + "." + self.fileType + " already exists." ) 
+            else:
+                open(self.filePath + "/" + self.fileName + str(index+1) +  "." + self.fileType, "x")
+            index += 1
 
 
+# ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+# ┃                                                                              ┃
+# ┃    From this point on to potentially visualization, these will eventually    ┃
+# ┃                                not be needed.                                ┃
+# ┃                                                                              ┃
+# ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
 
 class flow(markdown):
 
@@ -80,7 +110,7 @@ class visualization(markdown):
         self.fileType = "canva"
         self.fileName = "Ticket Visualization"
 
-    def printSeed(Self):
+    def printSeed(self):
         print(self.seed)
 
 

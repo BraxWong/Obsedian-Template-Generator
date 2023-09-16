@@ -1,5 +1,4 @@
 import os
-import tkinter as tk
 from tkinter import messagebox
 
 class json_converter():
@@ -10,7 +9,7 @@ class json_converter():
         self.template_name = template_name
 
     def write_to_file(self):
-        if os.path.exists(self.filePath + "/" + self.template_name + ".json"):        
+        if os.path.exists(self.filePath + "/" + self.template_name + ".json"):
             messagebox.showerror(title = "File exists", message = "Error: " + self.filePath + "/" + self.template_name + " exists." )
         else:
             print(self.filePath + "/" + self.template_name + ".json")
@@ -24,4 +23,3 @@ class json_converter():
                 f.write("\n")
                 index += 1
             f.write("}")
-
