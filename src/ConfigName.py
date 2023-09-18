@@ -4,8 +4,39 @@ from tkinter import messagebox
 import create_template
 from pathvalidate import is_valid_filename, sanitize_filename
 
+#
 class template_name(customtkinter.CTk):
 
+#                        ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+#                        ┃                              ┃
+#                        ┃  template_name documentation ┃
+#                        ┃                              ┃
+#                        ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
+
+    """
+    template_name is a class that is used to give users the ability to name their obsidian vault template.
+
+    Attributes
+    ────────────────────────────────────────────────────────────
+
+    TemplateName : str
+        The name of the obsidian vault template
+
+    initializeWidget()
+        Just like any other classes in this program, it is used to initialize all the widgets in that page.
+        It will call grid_configurate() to set up the grid, create a CTkLabel and CTkButton. When the CTkButton
+        is clicked, it will call create_template().
+
+    grid_configurate()
+        Just like any other classes in this program, it will configurate the grid system for this page.
+
+    create_template()
+        When the CTkButton is clicked, it will first find out whether the template name given is a valid file name.
+        If so, it will create a template_creator object and calling the mainloop method by passing in the template name.
+        If the template name is not a valid file name, a message box will be displayed saying the file name is not valid,
+        giving the user another opportunity to name their obsidian vault template.
+
+    """
     def initializeWidget(self):
         self.grid_configurate()
         self.geometry("600x300")
