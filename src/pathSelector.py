@@ -9,6 +9,49 @@ from tkinter import messagebox
 #NOTE: Maybe set a variable when creating a pathSelector object to trigger another tersion of initializeWidget
 class generator(customtkinter.CTk):
 
+    """
+    generator is a class that allows users to choose the target path for their obsidian vault template,
+    or obsidian vault path.
+
+    Attributes
+    ────────────────────────────────────────────────────────────
+
+    config : str
+        This decides whether the user wants to generate a default obsidian vault or a obsidian vault using a custom
+        template
+
+    config_path : str
+        This represents the target path to the obsidian vault custom template
+
+    directoryTextBox : customtkinter.CTkTextbox
+        This represents the text box object on screen that displays the target path to the desired item.
+
+    path : str
+        The represents the target path to the obsidian vault
+
+    Methods
+    ────────────────────────────────────────────────────────────
+    
+    initializeWidget()
+        Just like any other classes in this program, it is used to initialize all the widgets in that page.
+        It will call grid_configurate() to set up the grid, create a CTkLabel and two CTkButtons. When the directoryButton
+        is clicked, it will call the chooseLocation() method. When the continueButton is clicked, it will call
+        the directoryCheck() method.
+
+    grid_configurate()
+        Just like any other classes in this program, it will configurate the grid system for this page.
+
+    chooseLocation()
+       This method will display a file explorer type of window to allow users to pick the target path to their desired items.
+       When the path is picked, the location will be shown on the directoryTextBox.
+
+    directoryCheck()
+        This method will first check whether the path provided is valid. If not, a message box will be displayed showing the error.
+        Else, if the config value is equal to "Default", it will take the user to the templateConfig page. If the config value is equal
+        to "Custom", it will take the user to templateGenerator page. 
+
+    """
+
     def DefaultInitializeWidget(self):
         self.grid_configurate()
         self.geometry("600x300")
