@@ -7,6 +7,49 @@ from pathvalidate import is_valid_filename, sanitize_filename
 
 class config(customtkinter.CTk):
 
+    """
+    config is a class that allows users to choose the target path for their obsidian vault template,
+    or obsidian vault path.
+
+    Attributes
+    ────────────────────────────────────────────────────────────
+
+    filePath : str
+        This decides the target path for the obsidian vault. 
+
+    config : str
+        This decides whether a default obsidian vault will be generated or a custom obsidian
+        vault will be generated.
+
+    config_path : str
+        This represents the target path to the custom obsidian vault template file. 
+
+    ticketNumber : str
+        This represents the number of the ticket. 
+
+    ticketName : str
+        This represents the name of the ticket. 
+
+    Methods
+    ────────────────────────────────────────────────────────────
+    
+    initializeWidget()
+        Just like any other classes in this program, it is used to initialize all the widgets in that page.
+        It will call grid_configurate() to set up the grid, create three CTkLabel and one CTkButton. When the
+        submitButton is clicked, the submitTemplate() method will be called.
+
+    grid_configurate()
+        Just like any other classes in this program, it will configurate the grid system for this page.
+
+    submitTemplate()
+        This method will first check whether the target directory already exists, if it does exist, a message box
+        will be displayed showing the error. Else, it will use the templateGenerator() method to create the obsidian
+        vault in the targetted path.
+
+    validateInput()
+        This method will check whether the ticketnum is a valid input.
+
+    """
     def initializeWidget(self):
         self.grid_configurate()
         self.geometry("1000x500")

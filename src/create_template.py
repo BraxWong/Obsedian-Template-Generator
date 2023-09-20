@@ -6,7 +6,55 @@ import FileNQuantity
 import pathSelector
 
 class template_creator(customtkinter.CTk):
-    
+
+#                       ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+#                       ┃                                 ┃
+#                       ┃ template_creator Documentations ┃
+#                       ┃                                 ┃
+#                       ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
+
+    """
+    template_creator is a class that is used to give the user the option to choose what and how many 
+    to be included in the obsidian vault template.
+
+    Attributes
+    ────────────────────────────────────────────────────────────
+
+    optionmenu : customtkinter.CTkOptionMenu
+        The item to be included in the obsidian vault template
+
+    quantitymenu : customtkinter.CTkOptionMenu
+        The amount of that item to be included in the obsidian vault template
+
+    template_name : str
+        The name of the obsidian vault template
+
+    counter : int 
+       Counter to make sure the tops message box does not display twice
+
+    list_of_files : list
+       a list of FileNQuantity item to be used for the Json object 
+
+    initializeWidget()
+        Just like any other classes in this program, it is used to initialize all the widgets in that page.
+        It will call grid_configurate() to set up the grid, create a CTkLabel and two CTkButtons. When the startButton
+        is clicked, it will call the ConvertJson() method. When the moreFiles button is clicked, it will call
+        the AddFiles() method.
+
+    grid_configurate()
+        Just like any other classes in this program, it will configurate the grid system for this page.
+
+    ConvertJson()
+       This method will create a jsonConverter object by passing in the list_of_files, the template target path,
+       and the name of the template. The write_to_file() method will be called to create the Json object using 
+       the list_of_files list.
+
+    AddFiles()
+        This method will append the value of optionmenu and quantitymenu into a FileNQuantity object. This object
+        will then be appended to the list_of_files list.
+    """
+
+   
     def initializeWidget(self):
         self.grid_configurate()
         self.geometry("500x200")

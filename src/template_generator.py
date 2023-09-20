@@ -5,6 +5,42 @@ import json
 
 class templateGenerator():
 
+    """
+    templateGenerator is a class generates the obsidian vault. 
+
+    Attributes
+    ────────────────────────────────────────────────────────────
+
+    configFile : str
+        This represents the path to the obsidian vault template.      
+
+    filePath : str
+        This represents the target path to the obsidian vault.
+
+    ticketNumber : str
+        This represents the ticket number. 
+
+    ticketName: str
+        This represents the name of the ticket.
+
+    config : str
+        This represents whether the user wants to generate a default obsidian vault,
+        or a custom obsidian vault.
+
+    Methods
+    ────────────────────────────────────────────────────────────
+    
+    createDefaultTemplate()
+        This method will generate the default obsidian vault, the content includes flow.md, roadblocks.md,
+        reminder.md, resources.md, requirements.md, visualization.canva.
+        
+    createCustomTemplate()
+        This method will generate a custom obsidian vault using the custom obsidian vault template provided
+        by the user in the form of a Json object. The Json object will be deserialized and files will be generated using
+        the createMultipleFiles() method.
+
+    """
+
     def __init__(self, configFile, filePath, ticketNumber, ticketName, config):
         print(config)
         self.filePath = filePath

@@ -3,6 +3,38 @@ import pathSelector
 import tkinter
 class ChooseTemplate(customtkinter.CTk):
 
+#                        ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+#                        ┃                               ┃
+#                        ┃ ChooseTemplate Documentation  ┃
+#                        ┃                               ┃
+#                        ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
+
+    """
+    ChooseTemplate is a class that is used to give users the ability to whether generate a default obsidian vault, or a custom 
+    template made by the user.
+
+    Attributes
+    ────────────────────────────────────────────────────────────
+
+    radio_var : tkinter.IntVar
+        It indicates the value of the radio buttons that posses this object.
+
+    initializeWidget()
+        Just like any other classes in this program, it is used to initialize all the widgets in that page.
+        It will call grid_configurate() to set up the grid, create a CTkLabel and CTkButton. When the CTkButton
+        is clicked, it will call checkTemplateOption().
+
+    grid_configurate()
+        Just like any other classes in this program, it will configurate the grid system for this page.
+
+    checkTemplateOption()
+        When the CTkButton is clicked, it will check the radio_var object. If the radio_var's value is 1, that
+        indicates the Default radio button has been selected. It will create the generator object and passing in 
+        the string "Default". Else, it will still create the generator object but passing in the string "Custom" instead.
+        After that, the mainloop method will be called for the generator object.
+
+    """
+
     def initializeWidget(self):
         self.grid_configurate()
         self.geometry("500x200")
