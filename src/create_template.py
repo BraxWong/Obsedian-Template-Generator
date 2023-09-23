@@ -1,9 +1,7 @@
 import customtkinter
-import tkinter as tk
 from tkinter import messagebox
 import JsonConverter
 import FileNQuantity
-import pathSelector
 
 class template_creator(customtkinter.CTk):
 
@@ -69,8 +67,9 @@ class template_creator(customtkinter.CTk):
         self.optionmenu.grid(row = 1, column = 0, padx = 20, pady = 5, sticky = "w")
         self.quantitymenu.grid(row = 1, column = 1, padx = 20, pady = 5, sticky = "e")
          
-    def __init__(self, template_name):
+    def __init__(self, template_name, path):
         super().__init__()
+        self.path = path
         self.optionmenu = customtkinter.CTkOptionMenu(self, values=["Select Option","Flow","Roadblocks","Reminder","Resources","Requirements","Visualization","Others"])
         self.quantitymenu = customtkinter.CTkOptionMenu(self, values=["Select Quantity","1","2","3","4","5","Other"])
         self.list_of_files = []
@@ -86,16 +85,10 @@ class template_creator(customtkinter.CTk):
         self.grid_columnconfigure(0, weight = 1)
         self.grid_columnconfigure(1, weight = 1)
         
-# ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
-# ┃                                                                              ┃
-# ┃     #TODO: Use pathSelector to allow users to select target path for the     ┃
-# ┃                                  json file.                                  ┃
-# ┃                                                                              ┃
-# ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
-
     def ConvertJson(self):
-        json = JsonConverter.json_converter(self.list_of_files, "template", self.template_name) 
+        json = JsonConverter.json_converter(self.list_of_files, self.path, self.template_name) 
         json.write_to_file()
+        self.destroy()
 
     def AddFiles(self):
         if self.optionmenu.get() == "Select Option" or self.quantitymenu.get() == "Select Option":

@@ -48,8 +48,9 @@ class template_name(customtkinter.CTk):
         submit.grid(row = 1, column = 1, padx = (5,10))
         self.TemplateName.grid(row = 1, column = 0, padx = (5,10))
 
-    def __init__(self):
+    def __init__(self, path):
         super().__init__()
+        self.path = path; 
         self.TemplateName = customtkinter.CTkTextbox(self, width = 450, height = 50, border_width = 3)
         self.initializeWidget()
 
@@ -67,7 +68,7 @@ class template_name(customtkinter.CTk):
         templatename = templatename.strip()
         if self.TemplateName != 0:
             self.destroy()
-            template = create_template.template_creator(templatename)
+            template = create_template.template_creator(templatename, self.path)
             template.mainloop()
         else:
             messagebox.showerror(title = "Input Errors", message = "Error: Template Name cannot be empty.")

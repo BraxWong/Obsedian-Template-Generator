@@ -1,6 +1,7 @@
 import customtkinter
 import ConfigName
 import DefaultorCustomTemplate
+import pathSelector
 
 class Home(customtkinter.CTk):
 
@@ -55,8 +56,8 @@ class Home(customtkinter.CTk):
 
     def createTemplate(self):
         self.destroy()
-        config_name = ConfigName.template_name()
-        config_name.mainloop()
+        configPath = pathSelector.generator("CreateTemplate",None)
+        configPath.mainloop()
 
     def generateTemplate(self):
         self.destroy()

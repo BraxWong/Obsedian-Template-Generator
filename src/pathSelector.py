@@ -1,6 +1,7 @@
 import customtkinter
 import os
 import templateconfig as tc
+import ConfigName
 from tkinter.filedialog import askdirectory
 from tkinter.filedialog import askopenfilename
 from tkinter import messagebox
@@ -86,7 +87,7 @@ class generator(customtkinter.CTk):
         self.config_path = config_path
         self.directoryTextBox = customtkinter.CTkTextbox(self, width = 450, height = 50, border_width = 3)
         self.path = "";
-        if config == "Default":
+        if config == "Default" or config == "CreateTemplate":
             self.DefaultInitializeWidget()
         else:
             self.CustomInitializeWidget()
@@ -101,7 +102,7 @@ class generator(customtkinter.CTk):
         
 
     def chooseLocation(self):
-        if self.config == "Default":
+        if self.config == "Default" or self.config == "CreateTemplate":
             self.path = askdirectory(title='Select Directory')
             self.directoryTextBox.delete("0.0","end")
             self.directoryTextBox.insert("0.0","directory: " + self.path)
@@ -111,13 +112,17 @@ class generator(customtkinter.CTk):
             self.directoryTextBox.insert("0.0","directory: " + self.config_path)
 
     def directoryCheck(self):
-        if self.config == "Default":
+        if self.config == "Default" or self.config == "CreateTemplate":
             if not os.path.isdir(self.path):
                 messagebox.showerror(title = "Directory not found", message = "Error: Directory is either not found or no longer exists.")
             else:
                 self.destroy()
-                templateConfig = tc.config(self.path, self.config, self.config_path)
-                templateConfig.mainloop()
+                if self.config == "CreateTemplate":
+                    config_name = ConfigName.template_name(self.path)
+                    config_name.mainloop()
+                else:
+                    templateConfig = tc.config(self.path, self.config, self.config_path)
+                    templateConfig.mainloop()
         else:
             if self.config_path[-5:] != ".json":
                 messagebox.showerror(title = "Template Configuration Not Found", message = "Error: Template configuration file is either not found or no longer exists.")
